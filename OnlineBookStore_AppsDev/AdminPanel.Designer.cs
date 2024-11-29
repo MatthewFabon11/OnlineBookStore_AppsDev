@@ -41,6 +41,12 @@
             AddBttn = new Button();
             UpdateBttn = new Button();
             DeleteBttn = new Button();
+            GenreLabel = new Label();
+            GenreCmbBox = new ComboBox();
+            label7 = new Label();
+            PublishLbl = new TextBox();
+            label11 = new Label();
+            ResultCmbBox = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -81,7 +87,7 @@
             // AuthorLabel
             // 
             AuthorLabel.AutoSize = true;
-            AuthorLabel.Location = new Point(83, 190);
+            AuthorLabel.Location = new Point(83, 180);
             AuthorLabel.Name = "AuthorLabel";
             AuthorLabel.Size = new Size(54, 20);
             AuthorLabel.TabIndex = 9;
@@ -89,7 +95,7 @@
             // 
             // AuthorTextBox
             // 
-            AuthorTextBox.Location = new Point(151, 190);
+            AuthorTextBox.Location = new Point(151, 173);
             AuthorTextBox.Name = "AuthorTextBox";
             AuthorTextBox.Size = new Size(312, 27);
             AuthorTextBox.TabIndex = 10;
@@ -97,7 +103,7 @@
             // ISBNLabel
             // 
             ISBNLabel.AutoSize = true;
-            ISBNLabel.Location = new Point(83, 263);
+            ISBNLabel.Location = new Point(80, 238);
             ISBNLabel.Name = "ISBNLabel";
             ISBNLabel.Size = new Size(41, 20);
             ISBNLabel.TabIndex = 11;
@@ -105,7 +111,7 @@
             // 
             // ISBNTextBox
             // 
-            ISBNTextBox.Location = new Point(151, 260);
+            ISBNTextBox.Location = new Point(151, 231);
             ISBNTextBox.Name = "ISBNTextBox";
             ISBNTextBox.Size = new Size(312, 27);
             ISBNTextBox.TabIndex = 12;
@@ -155,11 +161,67 @@
             DeleteBttn.Text = "Delete";
             DeleteBttn.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // GenreLabel
+            // 
+            GenreLabel.AutoSize = true;
+            GenreLabel.Location = new Point(83, 308);
+            GenreLabel.Name = "GenreLabel";
+            GenreLabel.Size = new Size(48, 20);
+            GenreLabel.TabIndex = 25;
+            GenreLabel.Text = "Genre";
+            // 
+            // GenreCmbBox
+            // 
+            GenreCmbBox.FormattingEnabled = true;
+            GenreCmbBox.Items.AddRange(new object[] { "Fiction", "Non-Fiction", "Academic" });
+            GenreCmbBox.Location = new Point(151, 300);
+            GenreCmbBox.Name = "GenreCmbBox";
+            GenreCmbBox.Size = new Size(312, 28);
+            GenreCmbBox.TabIndex = 31;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(83, 364);
+            label7.Name = "label7";
+            label7.Size = new Size(119, 20);
+            label7.TabIndex = 32;
+            label7.Text = "Publication Date";
+            // 
+            // PublishLbl
+            // 
+            PublishLbl.Location = new Point(216, 361);
+            PublishLbl.Name = "PublishLbl";
+            PublishLbl.Size = new Size(247, 27);
+            PublishLbl.TabIndex = 33;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(80, 444);
+            label11.Name = "label11";
+            label11.Size = new Size(55, 20);
+            label11.TabIndex = 34;
+            label11.Text = "Results";
+            // 
+            // ResultCmbBox
+            // 
+            ResultCmbBox.Location = new Point(151, 441);
+            ResultCmbBox.Name = "ResultCmbBox";
+            ResultCmbBox.Size = new Size(312, 27);
+            ResultCmbBox.TabIndex = 35;
+            // 
+            // AdminPanel
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(891, 575);
+            Controls.Add(ResultCmbBox);
+            Controls.Add(label11);
+            Controls.Add(PublishLbl);
+            Controls.Add(label7);
+            Controls.Add(GenreCmbBox);
+            Controls.Add(GenreLabel);
             Controls.Add(DeleteBttn);
             Controls.Add(UpdateBttn);
             Controls.Add(AddBttn);
@@ -173,7 +235,7 @@
             Controls.Add(TitleLabel);
             Controls.Add(dataGridView1);
             Controls.Add(label1);
-            Name = "Form1";
+            Name = "AdminPanel";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
@@ -195,5 +257,11 @@
         private Button AddBttn;
         private Button UpdateBttn;
         private Button DeleteBttn;
+        private Label GenreLabel;
+        private ComboBox GenreCmbBox;
+        private Label label7;
+        private TextBox PublishLbl;
+        private Label label11;
+        private TextBox ResultCmbBox;
     }
 }
