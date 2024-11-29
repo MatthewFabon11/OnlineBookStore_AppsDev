@@ -39,8 +39,8 @@ namespace OnlineBookStore
                         if (username == "qqq" || password == "rrr")
                         {
                             this.Hide();
-                            AdminMenu adminMenu = new AdminMenu();
-                            adminMenu.Show();
+                            AdminPanel adminPanel = new AdminPanel();
+                            adminPanel.Show();
                         }
                         else
                         {
