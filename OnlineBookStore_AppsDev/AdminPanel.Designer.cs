@@ -53,11 +53,12 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(45, 34);
             label1.Name = "label1";
-            label1.Size = new Size(50, 20);
+            label1.Size = new Size(105, 38);
             label1.TabIndex = 0;
-            label1.Text = "label1";
+            label1.Text = "Admin";
             // 
             // dataGridView1
             // 
