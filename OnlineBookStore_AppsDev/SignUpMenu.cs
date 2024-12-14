@@ -18,7 +18,7 @@ namespace OnlineBookStore
         public SignUpMenu()
         {
             InitializeComponent();
-              connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Antonio Fabon Jr\Documents\Dec10_ver2_onlineBookStore\BOOK UP v2\Database.accdb;Persist Security Info=False;";
+              connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Kuya\OneDrive\Desktop\v1.1\Database.accdb;Persist Security Info=False;";
 
         }
 

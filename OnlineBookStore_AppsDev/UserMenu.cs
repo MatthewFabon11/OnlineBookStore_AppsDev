@@ -20,7 +20,7 @@ namespace OnlineBookStore
         public UserMenu()
         {
             InitializeComponent();
-            connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Antonio Fabon Jr\Documents\Dec10_ver2_onlineBookStore\BOOK UP v2\Database.accdb;Persist Security Info=False;";
+            connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Kuya\OneDrive\Desktop\v1.1\Database.accdb;Persist Security Info=False;";
 
         }
 
@@ -38,17 +38,15 @@ namespace OnlineBookStore
                 connection.Open();
                 OleDbCommand command = new OleDbCommand();
                 command.Connection = connection;
-
-
                 string query = "SELECT Title  From AdminTB";
                 command.CommandText = query;
 
                 OleDbDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    listbooksAVB.Items.Add(reader["Title"]);
+                    listbooksAVB.Items.Add(reader["Title"].ToString());
                 }
-                MessageBox.Show("Book Updated");
+
                 connection.Close();
             }
             catch (Exception ex)
@@ -57,15 +55,6 @@ namespace OnlineBookStore
                 connection.Close();
 
             }
-        }
-
-
-
-
-
-        private void textBoxBookTitle_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void buttonSearch_Click(object sender, EventArgs e)
@@ -103,12 +92,11 @@ namespace OnlineBookStore
                         MessageBox.Show("Book found and added to the list.");
 
                         connection.Close();
-
-
                     }
                     else
                     {
                         MessageBox.Show("No Book found with the given title");
+                        connection.Close();
                     }
                 }
                 catch (Exception ex)
@@ -117,17 +105,6 @@ namespace OnlineBookStore
 
                 }
             }
-
-        }
-
-        private void listBoxFoundBook_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridViewBookDetail_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void buttonClear_Click(object sender, EventArgs e)
@@ -147,5 +124,68 @@ namespace OnlineBookStore
 
 
         }
+
+        private void listbooksAVB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            try
+            {
+                connection.Open();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                string query = "select * from AdminTB where Title = '" + listbooksAVB.Text + "'";
+                command.CommandText = query;
+
+                OleDbDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Title_Label.Text = reader["Title"].ToString();
+                    Price_Label.Text = reader["Price"].ToString();
+                    Author_Label.Text = reader["Author"].ToString();
+
+                    if (Title_Label.Text == "red")
+                    {
+                        pictureBox1.Visible = true;
+                        pictureBox2.Visible = false;
+                        pictureBox3.Visible = false;
+                        pictureBox4.Visible = false;
+                    }
+                    else if (Title_Label.Text == "yello") 
+                    {
+                        pictureBox1.Visible = false;
+                        pictureBox2.Visible = true;
+                        pictureBox3.Visible = false;
+                        pictureBox4.Visible = false;
+                    }
+                    else if (Title_Label.Text == "pink")
+                    {
+                        pictureBox1.Visible = false;
+                        pictureBox2.Visible = false;
+                        pictureBox3.Visible = true;
+                        pictureBox4.Visible = false;
+                    }
+                    else if (Title_Label.Text == "blue")
+                    {
+                        pictureBox1.Visible = false;
+                        pictureBox2.Visible = false;
+                        pictureBox3.Visible = false;
+                        pictureBox4.Visible = true;
+                    }
+
+
+
+                }
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR: " + ex.Message);
+
+            }
+
+        }
+
+       
     }
 }

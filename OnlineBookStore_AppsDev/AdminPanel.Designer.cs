@@ -254,7 +254,6 @@
             LoadTB.TabIndex = 60;
             LoadTB.Text = "Load Table";
             LoadTB.UseVisualStyleBackColor = true;
-            LoadTB.Click += LoadTB_Click;
             // 
             // label2
             // 
@@ -381,6 +380,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "AdminPanel";
             Text = "Form1";
+            Load += AdminPanel_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)bookview).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();

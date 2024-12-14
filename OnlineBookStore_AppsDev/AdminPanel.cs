@@ -13,7 +13,7 @@ namespace OnlineBookStore
         public AdminPanel()
         {
             InitializeComponent();
-            connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Antonio Fabon Jr\Documents\Dec10_ver2_onlineBookStore\BOOK UP v2\Database.accdb;Persist Security Info=False;";
+            connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Kuya\OneDrive\Desktop\v1.1\Database.accdb;Persist Security Info=False;";
         }
 
         private void AddBttn_Click(object sender, EventArgs e)
@@ -39,7 +39,7 @@ namespace OnlineBookStore
                 MessageBox.Show("Please enter a valid value");
                 return;
             }
-            else if (Inputqty <= 0 || price <= 0) 
+            else if (Inputqty <= 0 || price <= 0)
             {
                 MessageBox.Show("Please enter a valid value");
             }
@@ -59,7 +59,35 @@ namespace OnlineBookStore
 
                 command.ExecuteNonQuery();
                 MessageBox.Show("BOOK ADDED");
+                TitleTxtBox.Clear();
+                AuthorTxtBox.Clear();
+                QuantityTxtBox.Clear();
+                GenreCmbBox.SelectedItem = null;
+                txt_Price.Clear();
                 connection.Close();
+
+
+                try
+                {
+                    
+                    string query2 = "SELECT * FROM AdminTB";
+                    command.CommandText = query2;
+
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(command);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    bookview.DataSource = dt;
+                    connection.Close();
+
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("ERROR: " + ex.Message);
+                    connection.Close();
+                }
+
+                
             }
         }
 
@@ -71,35 +99,11 @@ namespace OnlineBookStore
         }
 
 
-        private void LoadTB_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                connection.Open();
-                OleDbCommand command = new OleDbCommand();
-                command.Connection = connection;
-                string query = "SELECT * FROM AdminTB";
-                command.CommandText = query;
-
-                OleDbDataAdapter adapter = new OleDbDataAdapter(command);
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                bookview.DataSource = dt;
-
-                connection.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("ERROR: " + ex.Message);
-                connection.Close();
-            }
-        }
-
         private void DeleteBttn_Click(object sender, EventArgs e)
         {
             int id;
 
-            if (string.IsNullOrEmpty(txt_deleteID.Text)) 
+            if (string.IsNullOrEmpty(txt_deleteID.Text))
             {
                 MessageBox.Show("input ID");
             }
@@ -128,14 +132,37 @@ namespace OnlineBookStore
                     {
                         command.ExecuteNonQuery();
                         MessageBox.Show("Book deleted");
+                        txt_deleteID.Clear();
+
+                        try
+                        {
+
+                            string query2 = "SELECT * FROM AdminTB";
+                            command.CommandText = query2;
+
+                            OleDbDataAdapter adapter = new OleDbDataAdapter(command);
+                            DataTable dt = new DataTable();
+                            adapter.Fill(dt);
+                            bookview.DataSource = dt;
+                            connection.Close();
+
+
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("ERROR: " + ex.Message);
+                            connection.Close();
+                        }
+
                         connection.Close();
                     }
                     else
                     {
                         MessageBox.Show("Book does not exist");
+                        txt_deleteID.Clear();
+                        connection.Close();
                     }
 
-                    connection.Close();
                 }
                 catch (Exception ex)
                 {
@@ -150,6 +177,12 @@ namespace OnlineBookStore
             ID_label.Visible = true;
             txt_updateID.Visible = true;
             btn_UPDATE.Visible = true;
+
+            TitleTxtBox.Clear();
+            AuthorTxtBox.Clear();
+            QuantityTxtBox.Clear();
+            GenreCmbBox.SelectedItem = null;
+            txt_Price.Clear();
         }
 
         private void btn_UPDATE_Click(object sender, EventArgs e)
@@ -189,7 +222,7 @@ namespace OnlineBookStore
                     connection.Open();
                     OleDbCommand command = new OleDbCommand();
                     command.Connection = connection;
-                    string query = "UPDATE AdminTB SET Title='" + TitleTxtBox.Text + "', Author='" + AuthorTxtBox.Text + "', Quantity='" + QuantityTxtBox.Text + "', Genre='" + GenreCmbBox.Text + "', Price ='"+ txt_Price.Text + "' WHERE ID=" + txt_updateID.Text + "";
+                    string query = "UPDATE AdminTB SET Title='" + TitleTxtBox.Text + "', Author='" + AuthorTxtBox.Text + "', Quantity='" + QuantityTxtBox.Text + "', Genre='" + GenreCmbBox.Text + "', Price ='" + txt_Price.Text + "' WHERE ID=" + txt_updateID.Text + "";
                     command.CommandText = query;
 
                     int rowsAffected = command.ExecuteNonQuery();
@@ -197,16 +230,47 @@ namespace OnlineBookStore
                     if (rowsAffected > 0)
                     {
                         command.ExecuteNonQuery();
-                        MessageBox.Show("Book Updated");
+                        MessageBox.Show("Book Updatedss");
+                        TitleTxtBox.Clear();
+                        AuthorTxtBox.Clear();
+                        QuantityTxtBox.Clear();
+                        GenreCmbBox.SelectedItem = null;
+                        txt_Price.Clear(); 
+
+                        try
+                        {
+
+                            string query2 = "SELECT * FROM AdminTB";
+                            command.CommandText = query2;
+
+                            OleDbDataAdapter adapter = new OleDbDataAdapter(command);
+                            DataTable dt = new DataTable();
+                            adapter.Fill(dt);
+                            bookview.DataSource = dt;
+                            connection.Close();
+
+
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("ERROR: " + ex.Message);
+                            connection.Close();
+                        }
+
                         connection.Close();
                     }
                     else
                     {
                         MessageBox.Show("Book does not exist");
+                        TitleTxtBox.Clear();
+                        AuthorTxtBox.Clear();
+                        QuantityTxtBox.Clear();
+                        GenreCmbBox.SelectedItem = null;
+                        txt_Price.Clear();
                         connection.Close();
                     }
 
-                    
+
                 }
                 catch (Exception ex)
                 {
@@ -215,6 +279,32 @@ namespace OnlineBookStore
 
                 }
             }
+        }
+
+        private void AdminPanel_Load(object sender, EventArgs e)
+        {
+
+            try
+            {
+                connection.Open();
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                string query = "SELECT * FROM AdminTB";
+                command.CommandText = query;
+
+                OleDbDataAdapter adapter = new OleDbDataAdapter(command);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                bookview.DataSource = dt;
+
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR: " + ex.Message);
+                connection.Close();
+            }
+
         }
     }
 }
